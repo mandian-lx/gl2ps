@@ -16,7 +16,7 @@ BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glut)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(zlib)
-BuildRequires:	texlive-latex
+BuildRequires:	texlive
 
 %description
 GL2PS is a C library providing high quality vector output for any OpenGL
