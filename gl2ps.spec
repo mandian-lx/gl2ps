@@ -13,7 +13,6 @@ Source0:	http://geuz.org/%{name}/src/%{name}-%{version}.tgz
 
 BuildRequires:	cmake
 BuildRequires:	pkgconfig(gl)
-BuildRequires:	pkgconfig(glut)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	texlive-latex-bin
