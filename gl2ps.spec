@@ -15,6 +15,7 @@ BuildRequires:	cmake
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	texlive
 BuildRequires:	texlive-latex
 BuildRequires:	texlive-latex-bin
 
