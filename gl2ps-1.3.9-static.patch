@@ -1,0 +1,39 @@
+--- gl2ps-1.3.9-source/CMakeLists.txt.orig
++++ gl2ps-1.3.9-source/CMakeLists.txt
+@@ -114,8 +114,10 @@
+ include_directories(${EXTERNAL_INCLUDES})
+ 
+ if(OPENGL_FOUND)
+-  add_library(lib STATIC gl2ps.c gl2ps.h)
+-  set_target_properties(lib PROPERTIES OUTPUT_NAME gl2ps)
++  if(BUILD_STATIC_LIBS)
++    add_library(lib STATIC gl2ps.c gl2ps.h)
++    set_target_properties(lib PROPERTIES OUTPUT_NAME gl2ps)
++  endif(BUILD_STATIC_LIBS)
+ 
+   add_library(shared SHARED gl2ps.c gl2ps.h)
+   target_link_libraries(shared ${EXTERNAL_LIBRARIES})
+@@ -127,7 +129,10 @@
+     set_target_properties(shared PROPERTIES COMPILE_FLAGS "-DGL2PSDLL -DGL2PSDLL_EXPORTS")
+   endif(MSVC)
+ 
+-  install(TARGETS lib shared DESTINATION lib${LIB_SUFFIX})
++  install(TARGETS shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
++  if(BUILD_STATIC_LIBS)
++    install(TARGETS lib DESTINATION ${CMAKE_INSTALL_LIBDIR})
++  endif(BUILD_STATIC_LIBS)
+ endif(OPENGL_FOUND)
+ 
+ if(WIN32)
+@@ -145,9 +150,9 @@
+ 
+ if(GLUT_FOUND)
+   add_executable(gl2psTest WIN32 gl2psTest.c)
+-  target_link_libraries(gl2psTest lib ${EXTERNAL_LIBRARIES})
++  target_link_libraries(gl2psTest shared ${EXTERNAL_LIBRARIES})
+   add_executable(gl2psTestSimple WIN32 gl2psTestSimple.c)
+-  target_link_libraries(gl2psTestSimple lib ${EXTERNAL_LIBRARIES})
++  target_link_libraries(gl2psTestSimple shared ${EXTERNAL_LIBRARIES})
+ endif(GLUT_FOUND)
+ 
+ find_package(LATEX)
