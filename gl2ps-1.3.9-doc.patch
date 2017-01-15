@@ -1,0 +1,33 @@
+--- gl2ps-1.3.9-source/CMakeLists.txt.orig
++++ gl2ps-1.3.9-source/CMakeLists.txt
+@@ -133,15 +133,15 @@
+ if(WIN32)
+   set(GL2PS_DOC .)
+ else(WIN32)
+-  set(GL2PS_DOC share/doc/gl2ps)
++  set(GL2PS_DOC share/doc/lib${LIB_SUFFIX}gl2ps)
+ endif(WIN32)
+ 
+ install(FILES gl2ps.h DESTINATION include)
+-install(FILES ${CMAKE_SOURCE_DIR}/README.txt DESTINATION ${GL2PS_DOC})
+-install(FILES ${CMAKE_SOURCE_DIR}/COPYING.LGPL DESTINATION ${GL2PS_DOC})
+-install(FILES ${CMAKE_SOURCE_DIR}/COPYING.GL2PS DESTINATION ${GL2PS_DOC})
+-install(FILES ${CMAKE_SOURCE_DIR}/gl2psTest.c DESTINATION ${GL2PS_DOC})
+-install(FILES ${CMAKE_SOURCE_DIR}/gl2psTestSimple.c DESTINATION ${GL2PS_DOC})
++#install(FILES ${CMAKE_SOURCE_DIR}/README.txt DESTINATION ${GL2PS_DOC})
++#install(FILES ${CMAKE_SOURCE_DIR}/COPYING.LGPL DESTINATION ${GL2PS_DOC})
++#install(FILES ${CMAKE_SOURCE_DIR}/COPYING.GL2PS DESTINATION ${GL2PS_DOC})
++#install(FILES ${CMAKE_SOURCE_DIR}/gl2psTest.c DESTINATION ${GL2PS_DOC})
++#install(FILES ${CMAKE_SOURCE_DIR}/gl2psTestSimple.c DESTINATION ${GL2PS_DOC})
+ 
+ if(GLUT_FOUND)
+   add_executable(gl2psTest WIN32 gl2psTest.c)
+@@ -158,7 +158,7 @@
+                      COMMAND ${PDFLATEX_COMPILER} ARGS ${CMAKE_SOURCE_DIR}/gl2ps.tex
+                      COMMAND ${CMAKE_COMMAND} -E copy gl2ps.pdf ${CMAKE_SOURCE_DIR})
+   add_custom_target(pdf ALL DEPENDS gl2ps.pdf)
+-  install(FILES gl2ps.pdf DESTINATION ${GL2PS_DOC})
++#  install(FILES gl2ps.pdf DESTINATION ${GL2PS_DOC})
+   find_program(TTH tth)
+   if(TTH)
+     add_custom_command(OUTPUT gl2ps.html DEPENDS gl2ps.tex gl2ps.pdf

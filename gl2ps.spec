@@ -11,6 +11,7 @@ Group:		System/Libraries
 URL:		http://www.geuz.org/%{name}/
 Source0:	http://geuz.org/%{name}/src/%{name}-%{version}.tgz
 Patch0:		%{name}-1.3.9-static.patch
+Patch1:		%{name}-1.3.9-doc.patch
 
 BuildRequires:	cmake
 BuildRequires:	pkgconfig(gl)
@@ -88,7 +89,9 @@ develop programs using the GL2PS library.
 %prep
 %setup -q -n %{name}-%{version}-source
 
+# Apply all patches
 %patch0 -p1 -b .orig
+%patch1 -p1 -b .orig
 
 %build
 %cmake
@@ -96,7 +99,3 @@ develop programs using the GL2PS library.
 
 %install
 %makeinstall_std -C build
-
-# remove unused docs
-rm -r %{buildroot}%{_docdir}/%{name}
-
